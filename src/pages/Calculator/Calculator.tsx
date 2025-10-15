@@ -51,6 +51,10 @@ export const CalculatorPage: React.FC<Props> = (props: Props) => {
     });
   };
 
+  const handleReset = () => {
+    setValues({});
+  };
+
   const result = Object.keys(values).reduce((acc: number, itemName: string) => {
     return acc + values[itemName].kcal;
   }, 0);
@@ -80,6 +84,9 @@ export const CalculatorPage: React.FC<Props> = (props: Props) => {
           <div className={classes.buttonContainer}>
             <Button variant="contained" onClick={sendData(result)}>
               {result} Kcal
+            </Button>
+            <Button variant="outlined" onClick={handleReset}>
+              Reset
             </Button>
           </div>
         </div>
@@ -184,6 +191,7 @@ const styles = (theme: CustomTheme): Record<ClassNames, CSSProperties> => ({
     flex: 1,
     marginBottom: theme.spacing(3),
     marginTop: theme.spacing(3),
+    gap: theme.spacing(2),
   },
   lateralBar: {
     display: "flex",
