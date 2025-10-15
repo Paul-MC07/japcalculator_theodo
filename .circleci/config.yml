@@ -22,6 +22,12 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      # run security audit
+      - run:
+          name: Security Audit
+          # Fails the build for any vulnerabilities with a severity of high or critical
+          command: npm audit --audit-level=high
+
       # run tests!
       - run: npm run test
       - run: npm run build
@@ -29,4 +35,4 @@ jobs:
 workflows:
   node-tests:
     jobs:
-      - build-test
+      - build-test```
